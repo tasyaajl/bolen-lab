@@ -235,16 +235,19 @@ Catatan desain:
 
 ---
 
-## 8. Informasi Bisnis yang Masih Harus Dilengkapi
+## 8. Informasi Bisnis
 
-Semua item di bawah **tidak diisi dengan data karangan**. Isi melalui dashboard admin.
+**Sudah terisi (data resmi dari pemilik usaha):**
+- WhatsApp: `0896-8806-7113` (disimpan ternormalisasi `6289688067113`)
+- Instagram: [@balebolen](https://www.instagram.com/balebolen/)
+
+Item di bawah **tidak diisi dengan data karangan**. Isi melalui dashboard admin.
 
 | Data | Lokasi pengisian | Dampak bila kosong |
 |---|---|---|
 | Harga Paket Spesial | Admin → Paket Hampers | Paket tidak dapat dipesan |
 | Harga Paket Premium | Admin → Paket Hampers | Paket tidak dapat dipesan |
 | Minimal hari pre-order hampers | Admin → Pengaturan → Pre-order | Paket tidak dapat dipesan |
-| Nomor WhatsApp resmi | Admin → Pengaturan | Tombol WhatsApp disembunyikan |
 | Alamat lengkap usaha | Admin → Pengaturan | Placeholder di kontak & footer |
 | Jam operasional | Admin → Pengaturan | Placeholder di kontak & footer |
 | Logo asli | Admin → Pengaturan | Memakai monogram "B" |
@@ -255,7 +258,7 @@ Semua item di bawah **tidak diisi dengan data karangan**. Isi melalui dashboard 
 | Area jangkauan & tarif kirim | Admin → Pengaturan → Pengiriman | Ongkir tetap dikonfirmasi manual |
 | Stok awal setiap varian | Admin → Stok & Varian | Semua produk tampil "Stok habis" |
 | Cerita/sejarah bisnis | Admin → Pengaturan | Placeholder "akan dilengkapi" di halaman Tentang |
-| Kebijakan pembatalan/refund | Belum ada fitur khusus | **TODO keputusan pemilik usaha** |
+| Kebijakan pembatalan/refund | Admin → Pengaturan (`cancellation_policy`) | Bagian kebijakan tidak ditampilkan |
 | Biaya kemasan per paket | Belum ada kolom terpisah | **TODO keputusan pemilik usaha** |
 
 Catatan keputusan yang sengaja tidak diambil sendiri:
@@ -318,7 +321,49 @@ breakpoint CSS (1080/900/720/480 px) dan belum diuji dengan screenshot perangkat
 
 ---
 
-## 10. Catatan Pengembangan
+## 10. Pratinjau Statis di Vercel
+
+Vercel tidak menjalankan PHP/MySQL. Yang dapat dideploy hanya **salinan statis halaman publik**
+(beranda, katalog, filter kategori, detail produk, tentang, kontak) sebagai pratinjau tampilan.
+Keranjang, checkout, pesanan, dan admin **tidak aktif** di sana; tombol pesan diarahkan ke WhatsApp.
+
+### Membuat ulang salinan
+
+1. Jalankan aplikasi secara lokal (MySQL aktif):
+   ```bash
+   php -S 127.0.0.1:8000 -t public public/router.php
+   ```
+2. Ekspor:
+   ```bash
+   php bin/export-static.php http://127.0.0.1:8000 static-preview
+   ```
+   Perintah ini mengambil HTML jadi dari server, menulis ulang tautan
+   (`/menu/{slug}` → `/produk/{slug}`, filter kategori → `/menu/{kategori}`),
+   menghapus token CSRF, menambahkan spanduk pratinjau, lalu menyalin `public/assets`
+   dan `public/uploads`.
+
+### Deploy
+
+- Dengan CLI (dari folder proyek):
+  ```bash
+  npx vercel --prod
+  ```
+- Atau hubungkan repositori di dashboard Vercel. Framework preset: **Other**.
+  `vercel.json` sudah menetapkan `outputDirectory: static-preview` dan `cleanUrls: true`,
+  jadi tautan `/menu`, `/produk/{slug}`, `/tentang`, `/kontak` langsung berfungsi.
+
+`static-preview/` ikut di-commit (bukan hasil build di Vercel). `.vercelignore` mencegah
+folder sumber, `.env`, `.devdb`, dan `storage/` ikut terunggah.
+
+### Batasan yang perlu diingat
+
+- Keranjang, checkout, unggah bukti bayar, pelacakan pesanan, dan seluruh `/admin` tidak tersedia.
+- File dibuka lewat `file://` tidak akan memuat CSS/gambar karena memakai path absolut; gunakan server statis atau Vercel.
+- Perubahan konten di database **tidak** otomatis tampil; jalankan ulang ekspor lalu deploy lagi.
+
+---
+
+## 11. Catatan Pengembangan
 
 - **Session path**: aplikasi otomatis memakai `storage/sessions/` bila folder session bawaan PHP tidak writable (sering terjadi di Windows/Laragon).
 - **Placeholder foto**: `public/assets/img/placeholder-unit.svg` dan `placeholder-hampers.svg`. Foto asli yang diunggah admin disimpan di `public/uploads/products/` dan otomatis menggantikan placeholder.
@@ -330,7 +375,7 @@ breakpoint CSS (1080/900/720/480 px) dan belum diuji dengan screenshot perangkat
 
 ---
 
-## 11. Akun & URL Penting
+## 12. Akun & URL Penting
 
 | Halaman | URL |
 |---|---|

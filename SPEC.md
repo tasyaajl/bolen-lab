@@ -274,7 +274,7 @@ Semua nilai berikut **sengaja kosong** dan wajib diisi pemilik usaha. Tidak ada 
 | TBD-01 | Harga Paket Spesial (6 pcs) | Admin → Paket Hampers | Paket tidak dapat dipesan |
 | TBD-02 | Harga Paket Premium (12 pcs) | Admin → Paket Hampers | Paket tidak dapat dipesan |
 | TBD-03 | Minimal hari pre-order hampers | Admin → Pengaturan | Seluruh paket diblokir |
-| TBD-04 | Nomor WhatsApp resmi | Admin → Pengaturan | Tombol WhatsApp disembunyikan |
+| TBD-04 | Nomor WhatsApp resmi | Admin → Pengaturan | **Terisi 19 Nov 2026:** 0896-8806-7113 (Instagram @balebolen) |
 | TBD-05 | Alamat lengkap & patokan pickup | Admin → Pengaturan | Placeholder “dikonfirmasi admin” |
 | TBD-06 | Jam operasional | Admin → Pengaturan | Placeholder di kontak/footer |
 | TBD-07 | Logo & foto produk asli | Admin → Pengaturan/Produk | Monogram “B” & ilustrasi placeholder |

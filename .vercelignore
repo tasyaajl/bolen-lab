@@ -1,0 +1,13 @@
+.git
+.env
+.devdb
+storage
+vendor
+app
+bootstrap
+config
+database
+routes
+bin
+tests
+public

@@ -1019,7 +1019,7 @@ Sisa pekerjaan terkonsentrasi pada M9 (pengujian lapangan) dan M10 (deployment),
 |---|---|---|
 | TBD-01/02 | Harga Paket Spesial & Premium | T5.4, UAT |
 | TBD-03 | Minimal hari pre-order | Checkout hampers |
-| TBD-04 | Nomor WhatsApp | T7.1–T7.3 |
+| TBD-04 | Nomor WhatsApp | T7.1–T7.3 | — **terisi 19 Nov 2026:** 0896-8806-7113 |
 | TBD-05/06 | Alamat & jam operasional | Halaman pesanan/kontak |
 | TBD-07 | Logo & foto asli | Tampilan produksi |
 | TBD-08/09/10 | Rekening, QRIS, e-wallet | Instruksi pembayaran |
